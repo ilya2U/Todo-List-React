@@ -1,0 +1,22 @@
+.select-todo {
+    width: 85px;
+    height: 38px;
+    color: white;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    
+    font-family: Kanit;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    /* Remove default styles for select */
+ 
+
+   
+    
+}
+.select-todo>option{
+    color: rgb(147, 44, 44);
+}
