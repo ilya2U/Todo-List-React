@@ -79,18 +79,31 @@ const filteredTodos = todos
 
 
   const deletedTodoList = JSON.parse(localStorage.getItem('deletedTodos')) || [];
+  const allTodoList = JSON.parse(localStorage.getItem('allTodos')) || [];
 
   
     return (
       <div className="container">
         <div className="storage">
-        {deletedTodoList.map((todo) =>{
-          return (
-            <div key={todo.id}>
-              <span>{todo.text}</span>
-            </div>
-          )
-        })}
+          <div>
+              {deletedTodoList.map((todo) =>{
+              return (
+                <div key={todo.id}>
+                  <span>{todo.text}</span>
+                </div>
+              )
+            })}
+          </div>
+        
+          <div style={{marginLeft: 10}}>
+              {allTodoList.map((todo) =>{
+              return (
+                <div key={todo.id}>
+                  <span>{todo.text}</span>
+                </div>
+              )
+            })}
+          </div>
         </div>
         <div className="content">
           <div className="inner-content">

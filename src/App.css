@@ -6,6 +6,8 @@
 
 .storage {
   width: 200px; /* Ширина фиксированная для элемента .storage */
+  display: flex;
+  flex-direction: row; /* Строка внутри фиксированного контейнера */
 }
 
 .content {
@@ -13,4 +15,5 @@
   display: flex;
   justify-content: center; /* Центрирует внутренние элементы по горизонтали */
 }
+
 
