@@ -1,0 +1,11 @@
+.delete-all-tasks-btn-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.delete-all-tasks-btn-icon:hover {
+    filter: hue-rotate(0deg) brightness(0) saturate(100%) invert(44%) sepia(67%) saturate(5816%) hue-rotate(340deg) brightness(96%) contrast(99%);
+}

@@ -1,0 +1,30 @@
+.tasks-counter {
+    display: flex;
+    background-color: var(--background-color);
+    border: 1px solid #6C63FF;
+    color: var(--color);
+    border-radius: 5px;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 18px;
+    padding: 0px 10px;
+    margin-right: 5px;
+    height: 38px;
+    align-items: center; 
+  }
+  
+  .tasks-counter.animate {
+    animation: slideTaskCounter 0.5s ease-in-out;
+  }
+  
+  @keyframes slideTaskCounter {
+    0% {
+      transform: translateX(-100%); 
+      opacity: 0; 
+    }
+    100% {
+      transform: translateX(0); 
+      opacity: 1;
+    }
+  }
+  

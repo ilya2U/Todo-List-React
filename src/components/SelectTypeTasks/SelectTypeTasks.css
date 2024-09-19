@@ -1,0 +1,14 @@
+.filter-tasks-select{
+    width: 85px;
+    height: 38px;
+    color: #fff;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    margin-right: 16px;
+    margin-left: 16px;
+}
