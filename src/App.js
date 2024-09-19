@@ -1,135 +1,108 @@
 import { useEffect, useState } from "react";
-import ToolBar from "./components/ToolBar/ToolBar";
-import Item from "./components/Item/Item";
-import Empty from "./components/Empty/Empty";
+import ToolBar from "./components/TasksControlHeader/TasksControlHeader";
+import TaskItem from "./components/TaskItem/TaskItem";
+import Empty from "./components/EmptyTasksStub/EmptyTasksStub";
 import './App.css'
-import { updateAll, updateCurrent, updateDeleteAll, updateDeleteOne } from "./components/func";
+import {updateCurrentTasksList} from "./components/func";
+import Modal from "./UI/Modal/Modal";
+import AddTask from "./components/AddTaskContent/AddTaskContent";
+import AddTaskBtn from "./components/AddTaskBtn/AddTaskBtn";
+import TasksStatisticts from "./components/TasksStatistics/TasksStatisticts";
 
 function App() {
-const [countTodos,setCountTodos] = useState(  +(JSON.parse(localStorage.getItem('counter'))) || 0 );
-const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || [])
-const [search, setSearch] = useState("");
-const [filter, setFilter] = useState('all'); 
+const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || [])
+const [tasksCounter,setTasksCounter] = useState( +(JSON.parse(localStorage.getItem('tasksCounter'))) || 0 );
+const [tasksSearch, setTasksSearch] = useState("");
+const [tasksFilter, setTasksFilter] = useState('all');
+const [modalOpen, setModalOpen] = useState(false);
+
 
 useEffect(() => {
-  const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
-  const savedCounter = JSON.parse(localStorage.getItem('counter')) || [];
-  setTodos(savedTodos);
-  setCountTodos(+savedCounter);
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  setTasks(savedTasks);
 }, []);
 
 useEffect(() => {
-  console.log(countTodos, 'после обновления');
-  localStorage.setItem('counter', JSON.stringify(countTodos)); 
-}, [countTodos]);
+  updateCurrentTasksList(tasks)
+  setTasksCounter(tasks.length)
+}, [tasks]);
 
-useEffect(() => {
-  updateCurrent(todos)
-}, [todos]);
-
-const putTodo = (value) => {
+const putTask = (value) => {
   if (value) {
-    const newTodo = { id: Date.now(), text: value, done: false };
-    setTodos([newTodo, ...todos]);
-    updateAll(newTodo)
-    value = ''; 
-    setCountTodos((prev) => prev + 1);
+    const newTask = { id: Date.now(), text: value, done: false };
+    setTasks([newTask, ...tasks]);
   } else {
     alert('Please enter a value');
   }
 }
 
-const toggleTodo = (id) => {
-  setTodos(todos.map((todo) => 
-    todo.id === id ? { ...todo, done: !todo.done } : todo
+const toggleTaskMode = (id) => {
+  setTasks(tasks.map((task) => 
+    task.id === id ? { ...task, done: !task.done } : task
   ));
 };
 
-const deleteTodo = (id) => {
-  const deletedTodo = todos.find((todo) => todo.id === id)
-  updateDeleteOne(deletedTodo)
-  setTodos(todos.filter(todo => todo.id!== id))
+const deleteTask = (id) => {
+  setTasks(tasks.filter(task => task.id!== id))
 }
 
-const deleteAllTodos = () => {
-  updateDeleteAll(todos)
-  setTodos([])
+const deleteAllTasks = () => {
+  setTasks([])
 }
 
-const editTodo = (id, newText) => {
-  setTodos(todos.map((t) => t.id === id ? {...t, text: newText} : t))
+const editTask = (id, newText) => {
+  setTasks(tasks.map((t) => t.id === id ? {...t, text: newText} : t))
 }
 
-const handleSearchChange = (event) => {
-  setSearch(event.target.value);
+const handleSearchTasksChange = (event) => {
+  setTasksSearch(event.target.value);
 };
 
-const handleFilterChange = (newFilter) => {
-  setFilter(newFilter);
+const handleTasksFilterChange = (newFilter) => {
+  setTasksFilter(newFilter);
 };
 
 
-const filteredTodos = todos
-    .filter(todo => {
-      if (filter === 'completed')  return todo.done;
-      if (filter === 'incomplete') return !todo.done;
+const filteredTasks = tasks
+    .filter(task => {
+      if (tasksFilter === 'completed')  return task.done;
+      if (tasksFilter === 'active') return !task.done;
       return true; 
     })
-    .filter(todo => todo.text.toLowerCase().includes(search.toLowerCase()));
+    .filter(task => task.text.toLowerCase().includes(tasksSearch.toLowerCase()));
 
-
-  const deletedTodoList = JSON.parse(localStorage.getItem('deletedTodos')) || [];
-  const allTodoList = JSON.parse(localStorage.getItem('allTodos')) || [];
-
-  
     return (
       <div className="container">
-        <div className="storage">
-          <div>
-              {deletedTodoList.map((todo) =>{
-              return (
-                <div key={todo.id}>
-                  <span>{todo.text}</span>
-                </div>
-              )
-            })}
-          </div>
-        
-          <div style={{marginLeft: 10}}>
-              {allTodoList.map((todo) =>{
-              return (
-                <div key={todo.id}>
-                  <span>{todo.text}</span>
-                </div>
-              )
-            })}
-          </div>
-        </div>
+        <TasksStatisticts tasks={tasks}/>
+        <AddTaskBtn setActiveModal={setModalOpen} />
+        <Modal active={modalOpen} setActive={setModalOpen}>
+          <AddTask putTask={putTask} setActive={setModalOpen}/>
+        </Modal>
         <div className="content">
           <div className="inner-content">
             <div style={{marginTop: 10}}>
               <ToolBar 
-                putTodo={putTodo} 
-                deleteAllTodos={deleteAllTodos} 
-                countTodos={countTodos}
-                search={search} 
-                onSearchChange={handleSearchChange}
-                filter={filter}
-                onFilterChange={handleFilterChange}
+                putTask={putTask} 
+                deleteAllTasks={deleteAllTasks} 
+                tasksCounter = {tasksCounter}
+                tasksSearch={tasksSearch} 
+                handleSearchTasksChange={handleSearchTasksChange}
+                tasksFilter={tasksFilter}
+                handleTasksFilterChange={handleTasksFilterChange}
               />
             </div>
-            {filteredTodos.length === 0 ? (
+            {filteredTasks.length === 0 ? (
               <Empty />
             ) : (
               <ul>
-                {filteredTodos.map((todo, index) => (
-                  <Item
-                    key={todo.id}
+                {filteredTasks.map((task, index) => (
+                  <TaskItem
+                    key={task.id}
                     index={index}
-                    todo={todo}
-                    deleteTodo={deleteTodo}
-                    editTodo={editTodo}
-                    toggleTodo={toggleTodo}
+                    task={task}
+                    deleteTask={deleteTask}
+                    editTask={editTask}
+                    toggleTaskMode={toggleTaskMode}
                   />
                 ))}
               </ul>

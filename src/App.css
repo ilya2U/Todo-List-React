@@ -1,19 +1,19 @@
 .container {
   display: flex;
-  justify-content: center; /* Центрирует внутренние элементы по горизонтали */
+  justify-content: center;
   width: 100%;
 }
 
 .storage {
-  width: 200px; /* Ширина фиксированная для элемента .storage */
+  width: 200px; 
   display: flex;
-  flex-direction: row; /* Строка внутри фиксированного контейнера */
+  flex-direction: row;
 }
 
 .content {
-  flex-grow: 1; /* Заставляет этот элемент занимать оставшееся пространство */
+  flex-grow: 1; 
   display: flex;
-  justify-content: center; /* Центрирует внутренние элементы по горизонтали */
+  justify-content: center; 
 }
 
 
