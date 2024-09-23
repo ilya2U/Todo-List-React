@@ -1,9 +1,5 @@
-export function updateCurrentTasksList(tasks) {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
+import { LOCAL_STORAGE_TASKS_KEY } from "./variablesLocalStorage";
 
-export function updateAllTasks(tasks) {
-    const currentAllTodos = JSON.parse(localStorage.getItem('allTasks')) || [];
-    currentAllTodos.unshift(tasks); 
-    localStorage.setItem('allTasks', JSON.stringify(currentAllTodos));
+export function updateCurrentTasksList(tasks) {
+    localStorage.setItem(LOCAL_STORAGE_TASKS_KEY, JSON.stringify(tasks));
 }

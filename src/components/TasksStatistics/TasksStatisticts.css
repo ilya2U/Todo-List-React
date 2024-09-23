@@ -1,4 +1,4 @@
-.fixed-info-block {
+.tasks-statisticts {
     position: fixed;
     top: 15px;
     left: 15px;
@@ -6,9 +6,21 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid #6C63FF;
+    width: 300px;
+    transform: translateX(-100%);
+    animation: tasks-statisticts-slide-in 0.5s ease-in-out forwards;
 }
 
-.fixed-information-span {
+@keyframes tasks-statisticts-slide-in {
+    from {
+        transform: translateX(-100%); 
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.tasks-statisticts-span {
     background-color: var(--background-color);
     font-size: 16px;
     font-weight: 300;
@@ -17,10 +29,10 @@
     margin: 7px;
 }
 
-.purple-line-info-block{
+.tasks-statisticts-purple-line {
     margin-top: 10px;
-    border-bottom: 1px solid  #6C63FF;
+    border-bottom: 1px solid #6C63FF;
     width: 270px;
-    margin-left: auto;  
+    margin-left: auto;
     margin-right: auto; 
 }

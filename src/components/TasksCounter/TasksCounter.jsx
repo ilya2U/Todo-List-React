@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import './TasksCounter.css';
 
 const TasksCounter = ({ tasksCounter }) => {
-  const [animationTaskCounerClass, setAnimationTaskCounerClass] = useState('');
+  const [animationTaskCounterClass, setAnimationTaskCounterClass] = useState('');
 
   useEffect(() => {
-    setAnimationTaskCounerClass('animate');
+    setAnimationTaskCounterClass('animate');
     const timer = setTimeout(() => {
-      setAnimationTaskCounerClass('');
+      setAnimationTaskCounterClass('');
     }, 500);
 
     return () => clearTimeout(timer);
@@ -15,11 +16,11 @@ const TasksCounter = ({ tasksCounter }) => {
 
   return (
     <>
-      {tasksCounter !== 0 && (
-        <div className={`tasks-counter ${animationTaskCounerClass}`}>
+      {tasksCounter > 0 ? (
+             <div className={classNames('tasks-counter', animationTaskCounterClass)}>
           {tasksCounter}
         </div>
-      )}
+      ) : <div className='tasks-counter-none'></div>}
     </>
   );
 };

@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './ThemeSwitch.css';
+import { LOCAL_STORAGE_THEME_KEY } from "../variablesLocalStorage";
+import lightThemeIcon from '../../icons/light-theme-icon.svg'
+import datkThemeIcon from '../../icons/dark-theme-icon.svg'
 
 const ThemeSwitch = () => {
-  const [dark, setDark] = useState(JSON.parse(localStorage.getItem('DarkTheme')) || false)
+  const [theme, setTheme] = useState(localStorage.getItem(LOCAL_STORAGE_THEME_KEY));
 
   useEffect(() => {
-    if (dark) {
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('DarkTheme', JSON.stringify(true));
-    } else {
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('DarkTheme', JSON.stringify(false));
-    }
-  }, [dark]);
+    document.documentElement.classList.remove('light-theme', 'dark-theme');
+    document.documentElement.classList.add(theme);
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === 'light-theme' ? 'dark-theme' : 'light-theme'));
+  };
 
   return (
     <div className='theme-switch'>
       <img
-        src={dark ? "/icons/light-theme-icon.svg" : "/icons/dark-theme-icon.svg"}
+        src={theme === 'light-theme' ?  datkThemeIcon : lightThemeIcon}
         alt="Theme Switcher"
-        onClick={() => setDark(!dark)}
+        onClick={toggleTheme}
         className='theme-switch-icon'
       />
     </div>

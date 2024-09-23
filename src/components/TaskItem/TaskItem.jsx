@@ -1,18 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './TaskItem.css';
+import DeleteTaskItemIcon from '../../icons/delete-task-icon.svg'
+import EditTaskItemIcon from '../../icons/edit-task-icon.svg'
 
-const TaskItem = ({ task, toggleTaskMode, deleteTask, editTask, index }) => {
+const TaskItem = ({ task, toggleIsEditTask, deleteTask, editTask, index }) => {
+
   const [isEditing, setIsEditing] = useState(false);
   const [newTaskText, setNewTaskText] = useState(task.text);
-  const inputTaskFocusRef = useRef(null);
+  const [errorEditTask, setErrorEditTaskText] = useState('')
 
   const handleTaskEditClick = () => {
     setIsEditing(true);
   };
 
   const handleTaskSaveClick = () => {
-    editTask(task.id, newTaskText);
-    setIsEditing(false);
+    if (newTaskText.trim().length < 3) {
+      setNewTaskText('')
+      setErrorEditTaskText('Task must contain more than three characters.');
+    } else {
+      setErrorEditTaskText(''); 
+      editTask(task.id, newTaskText);
+      setIsEditing(false);
+    }
   };
 
   const handleCancelTaskEditClick = () => {
@@ -24,29 +33,32 @@ const TaskItem = ({ task, toggleTaskMode, deleteTask, editTask, index }) => {
     setNewTaskText(e.target.value);
   };
 
+  const hadleDeleteTaskItem = (e) => {
+    deleteTask(task.id);
+    e.stopPropagation();
+  }
+
   const handleTaskInputKeyDownAction = (e) => {
     if (e.key === 'Enter') {
         handleTaskSaveClick();
-    }
-    else if (e.key === 'Escape') {
+    } else if (e.key === 'Escape') {
         handleCancelTaskEditClick();
     }
   };
 
-  useEffect(() => {
-    if (isEditing && inputTaskFocusRef.current) {
-      inputTaskFocusRef.current.focus();
-    }
-  }, [isEditing]);
+  const handleStartTaskEdititing = (e) => {
+    if (!isEditing) handleTaskEditClick();
+    e.stopPropagation();
+  }
 
   return (
     <div className='task-item'>
       <div className='task-item-note'>
         <input
-          className='task-item-checker'
+          className='task-item-checkbox-completed'
           type="checkbox"
           checked={task.done}
-          onChange={() => toggleTaskMode(task.id)}
+          onChange={() => toggleIsEditTask(task.id)}
         />
         {isEditing ? (
           <div className='task-item-edit-container'>
@@ -56,9 +68,17 @@ const TaskItem = ({ task, toggleTaskMode, deleteTask, editTask, index }) => {
               onChange={handleInputChange}
               onKeyDown={handleTaskInputKeyDownAction}
               className='task-item-edit-input'
-              ref={inputTaskFocusRef} 
+              autoFocus={true}
+              placeholder={errorEditTask}
+              required
             />
-            <button onClick={handleTaskSaveClick} className='task-item-save-button'>SAVE</button>
+            <button
+              onClick={handleTaskSaveClick} 
+              className='task-item-save-button'
+              disabled={newTaskText === task.text}
+            >
+              SAVE
+            </button>
             <button onClick={handleCancelTaskEditClick} className='task-item-cancel-button'>CANCEL</button>
           </div>
         ) : (
@@ -66,26 +86,22 @@ const TaskItem = ({ task, toggleTaskMode, deleteTask, editTask, index }) => {
             {task.text + ' #' + (index + 1)}
           </span>
         )}
-        <div className='task-item-icon-container'>
-          <img
-            src="/icons/edit-todo-icon.svg"
-            alt="Change"
-            className="task-item-edit-icon"
-            onClick={(e) => {
-              if (!isEditing) handleTaskEditClick();
-              e.stopPropagation();
-            }}
-          />  
-          <img
-            src="/icons/delete-todo-icon.svg"
-            alt="Delete Task Button"
-            className="task-item-delete-icon"
-            onClick={(e) => {
-              deleteTask(task.id);
-              e.stopPropagation();
-            }}
-          />
-        </div>
+       {!isEditing && (
+          <div className='task-item-icon-container'>
+            <img
+              src={EditTaskItemIcon}
+              alt="Change"
+              className="task-item-edit-icon"
+              onClick={handleStartTaskEdititing}
+            />  
+            <img
+              src={DeleteTaskItemIcon}
+              alt="Delete Task Button"
+              className="task-item-delete-icon"
+              onClick={hadleDeleteTaskItem}
+            />
+          </div>
+        )}
       </div>
       <div className='task-item-line'></div>
     </div>

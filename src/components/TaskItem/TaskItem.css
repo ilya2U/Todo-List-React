@@ -40,7 +40,7 @@
     width: 420px;
 }
 
-.task-item-checker {
+.task-item-checkbox-completed {
     position: relative; 
     width: 26px;
     height: 26px;
@@ -50,26 +50,26 @@
     background-color: var(--background-color);
     cursor: pointer;
     margin-right: 20px;
-}
 
-.task-item-checker:checked {
-    background-color: #6C63FF;
-    border: 1px solid #6C63FF;
-}
+    &:checked {
+        background-color: #6C63FF;
+        border: 1px solid #6C63FF;
 
-.task-item-checker:checked::after {
-    content: '';
-    position: absolute;
-    top: 40%; 
-    left: 50%; 
-    width: 6px; 
-    height: 13.65px; 
-    border: solid #fff; 
-    border-width: 0 2px 2px 0; 
-    transform: rotate(45deg); 
-    transform-origin: center; 
-    margin-top: -8px; 
-    margin-left: -4px; 
+        &::after {
+            content: '';
+            position: absolute;
+            top: 40%; 
+            left: 50%; 
+            width: 6px; 
+            height: 13.65px; 
+            border: solid #fff; 
+            border-width: 0 2px 2px 0; 
+            transform: rotate(45deg); 
+            transform-origin: center; 
+            margin-top: -8px; 
+            margin-left: -4px; 
+        }
+    }
 }
 
 .task-item-delete-icon {
@@ -79,11 +79,10 @@
     margin-left: 10px;
     margin-top: 4px;
     cursor: pointer;
-
 }
 
 .task-item-delete-icon:hover {
-    filter: hue-rotate(0deg) brightness(0) saturate(100%) invert(44%) sepia(67%) saturate(5816%) hue-rotate(340deg) brightness(96%) contrast(99%);
+    filter: var(--red-svg-color);
 }
 
 .task-item-edit-icon{
@@ -119,9 +118,10 @@
 }
   
 .task-item-edit-input {
-    font-size: 20px;
+    font-size: 14px;
     line-height: 26px;
     padding: 0 10px;
+    width: 270px;
     margin-right: 10px;
     border: 1px solid #6C63FF;
     background-color: var(--background-color);
@@ -137,6 +137,7 @@
     border-radius: 4px;
     background-color: #6C63FF;
     color: #fff;
+    justify-content: flex-end;
 }
   
 .task-item-cancel-button {
@@ -150,4 +151,3 @@
     border: 1px solid #6C63FF;
     color: #6C63FF;
 }
-

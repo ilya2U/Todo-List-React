@@ -1,20 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState} from 'react';
 import './AddTaskContent.css';
 
-const AddTaskContent = ({ putTask, setActive }) => {
+const AddTaskContent = ({ addNewTask, setActive }) => {
+  
   const [todoInputValue, setTodoInputValue] = useState('');
   const [error, setError] = useState(''); 
-  const inputTaskCreatingRef = useRef(null); 
 
   const handleCreateTask = () => {
-    if (todoInputValue.trim() !== '') {
-      putTask(todoInputValue);  
+    if (todoInputValue.trim().length > 2) {
+      addNewTask(todoInputValue);  
       setTodoInputValue('');    
       setActive(false);
       setError(''); 
     } else {
-      setError('Input must not be empty.'); 
+      setTodoInputValue('');
+      setError('Input must must contain more than three characters.'); 
     }
+  };
+
+  const handleCancelTaskCreating = () => {
+    setTodoInputValue('');  
+    setActive(false);
+    setError(''); 
   };
 
   const handleKeyDownInputTask = (e) => {
@@ -27,12 +34,6 @@ const AddTaskContent = ({ putTask, setActive }) => {
     }
   };
 
-  useEffect(() => {
-    if (inputTaskCreatingRef.current) {
-      inputTaskCreatingRef.current.focus();
-    }
-  }, []);
-
   return (
     <div className='add-task-content'>
       <div className="add-task-content-note-title">NEW NOTE</div>
@@ -43,14 +44,11 @@ const AddTaskContent = ({ putTask, setActive }) => {
         value={todoInputValue}
         onChange={e => setTodoInputValue(e.target.value)}
         onKeyDown={handleKeyDownInputTask}
-        ref={inputTaskCreatingRef}
+        autoFocus
         required
       />
       <div className="add-task-content-button-container">
-        <button className="add-task-content-close-btn" onClick={() => {
-          setActive(false);
-          setError(''); 
-        }}>
+        <button className="add-task-content-close-btn" onClick={handleCancelTaskCreating}>
           CANCEL
         </button>
         <button className="add-task-content-apply-btn" onClick={handleCreateTask}>

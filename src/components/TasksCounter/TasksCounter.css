@@ -12,12 +12,18 @@
     height: 38px;
     align-items: center; 
   }
-  
-  .tasks-counter.animate {
-    animation: slideTaskCounter 0.5s ease-in-out;
+
+  .tasks-counter-none{
+    min-width: 32.5px;
+    opacity: 0;
+    margin-right: 5px;
   }
   
-  @keyframes slideTaskCounter {
+  .tasks-counter.animate {
+    animation: taskCounterMoveAnimation 0.5s ease-in-out;
+  }
+  
+  @keyframes taskCounterMoveAnimation {
     0% {
       transform: translateX(-100%); 
       opacity: 0; 
@@ -27,4 +33,3 @@
       opacity: 1;
     }
   }
-  

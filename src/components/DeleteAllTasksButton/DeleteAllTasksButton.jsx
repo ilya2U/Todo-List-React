@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DeleteAllTasksButton.css';
+import delteALlTasksIcon from '../../icons/delete-task-icon.svg'
+import Modal from '../../UI/Modal/Modal';
 
 const DeleteAllTasksButton = ({ deleteAllTasks, setAnimationSearchInput, tasksCounter }) => {
+
+  const [deleteAllTasksModal, setDeleteAllTasksModal] = useState(false)
   const searchAnimation = () => setAnimationSearchInput('animate');
-  const handleDeleteAllTasks = () => { 
+
+  const applyDeleteAllTask = () => { 
+    deleteAllTasks();
+    setDeleteAllTasksModal(false);
+  }
+
+  const handleDeleteAllTask = () => {
     if(tasksCounter===0){
       searchAnimation();
+    } else {
+      setDeleteAllTasksModal(true);
     }
-    deleteAllTasks();
   }
- 
+
   return (
-    <div>
-      <img
-        src="/icons/delete-todo-icon.svg"
+    <>  <img
+        src={delteALlTasksIcon}
         alt="Delete All Tasks Button"
         className="delete-all-tasks-btn-icon"
-        onClick={() => handleDeleteAllTasks()}
+        onClick={() => handleDeleteAllTask()}
       />
-    </div>
+      <Modal active = {deleteAllTasksModal} setActive={setDeleteAllTasksModal}>
+        <div className='delete-all-tasks-modal'>
+          <div className='delete-all-tasks-modal-title'>Are you sure that you want to remove all your tasks?</div>
+          <div className='delete-all-tasks-modal-btn-container'>
+            <button className='delete-all-tasks-modal-cancel-btn' onClick={()=>setDeleteAllTasksModal(false)}>CANCEL</button>
+            <button className='delete-all-tasks-modal-apply-btn' onClick={applyDeleteAllTask}>APPLY</button>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 };
 

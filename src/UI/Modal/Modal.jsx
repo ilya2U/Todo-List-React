@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Modal.css';
 
 const Modal = ({ active, setActive, children }) => {
   const [closing, setClosing] = useState(false);
 
-  useEffect(() => {
-    if (!active && closing) {
-      const timeout = setTimeout(() => {
-        setClosing(false);
-      }, 500); 
-
-      return () => clearTimeout(timeout);
-    }
-  }, [active, closing]);
-
   const handleClose = () => {
     setClosing(true);
-    setTimeout(() => setActive(false), 500);
+    setTimeout(() => {
+      setClosing(false);
+      setActive(false);
+    }, 100); 
   };
 
   return (

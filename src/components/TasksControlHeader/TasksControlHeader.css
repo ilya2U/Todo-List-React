@@ -20,7 +20,7 @@
   border-radius: 5px;
   border: 1px solid #6C63FF; 
   box-sizing: border-box;
-  background: url('/public/icons/search-todo-icon.svg') no-repeat; 
+  background: url('../../icons/search-task-icon.svg') no-repeat; 
   background-size: 16px 16px; 
   background-position: calc(100% - 12px) center; 
   color: var(--color);
@@ -30,42 +30,17 @@
   animation: no-task-input-shake-animation 0.5s ease;
 }
 
-.head-name{
+.tasks-control-header-title{
   width: 122px;
   height: 39px;
   gap: 0px;
   opacity: 0px;
   margin: 0 auto;
 }
-  
+
 .tasks-control-header-content {
   display: flex;
   flex-direction: row;
   justify-content: center; 
   align-items: center;
-  
 }
-  
-.icon-button {
-  margin-right: 10px;
-    width: 50px;
-    height: 50px;
-    background-color: #6C63FF; 
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 1;
-  }
-  
-  .plus-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    filter: invert(1) brightness(100) grayscale(100); 
-  }
-    
-    

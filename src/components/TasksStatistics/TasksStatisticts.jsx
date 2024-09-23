@@ -1,19 +1,25 @@
-import React from 'react'
-import './TasksStatisticts.css'
-const TasksStatisticts = ({tasks}) => {
-    const quantityTasks = tasks.length;
-    const quantityDoneTasks = tasks.filter(task => !task.done).length;
-    const quantityActiveTasks = tasks.filter(task => task.done).length;
-    
-  return (
-    <div className="fixed-info-block">
-        <div  className="fixed-information-span"> Общее количество задач: {quantityTasks}</div>
-            <div className="purple-line-info-block"></div>
-        <div  className="fixed-information-span">Количество текущих задач: {quantityDoneTasks}</div>
-            <div className="purple-line-info-block"></div>
-        <div  className="fixed-information-span">Количество удаленных задач: {quantityActiveTasks}</div>
-    </div>
-  )
-}
+import React from 'react';
+import './TasksStatisticts.css';
 
-export default TasksStatisticts
+const TasksStatisticts = ({ tasks }) => {
+
+  const quantityTasks = tasks.length;
+  const quantityDoneTasks = tasks.filter(task => !task.done).length;
+  const quantityActiveTasks = tasks.filter(task => task.done).length;
+
+  if (!quantityTasks) {
+    return null;
+  }
+
+  return (
+    <div className='tasks-statisticts'>
+      <div className="tasks-statisticts-span">Общее количество задач: {quantityTasks}</div>
+      <div className="tasks-statisticts-purple-line"></div>
+      <div className="tasks-statisticts-span">Количество текущих задач: {quantityDoneTasks}</div>
+      <div className="tasks-statisticts-purple-line"></div>
+      <div className="tasks-statisticts-span">Количество выполненных задач: {quantityActiveTasks}</div>
+    </div>
+  );
+};
+
+export default TasksStatisticts;

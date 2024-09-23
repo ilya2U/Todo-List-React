@@ -1,4 +1,5 @@
 .delete-all-tasks-btn-icon {
+    box-sizing: border-box;
     width: 25px;
     height: 25px;
     margin-left: 10px;
@@ -7,5 +8,59 @@
 }
 
 .delete-all-tasks-btn-icon:hover {
-    filter: hue-rotate(0deg) brightness(0) saturate(100%) invert(44%) sepia(67%) saturate(5816%) hue-rotate(340deg) brightness(96%) contrast(99%);
+    filter: var(--red-svg-color);
+}
+
+.delete-all-tasks-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border);
+    padding: 10px;
+}
+
+.delete-all-tasks-modal-title{
+    margin: auto 10px;
+    color: var(--color);
+    margin-top: 18px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+}
+
+.delete-all-tasks-modal-btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin: 20px 10px 20px 10px;
+    gap: 10px
+}
+
+.delete-all-tasks-modal-apply-btn{
+    background-color: #6C63FF;
+    color: #fff;
+    border: 1px solid #6C63FF;
+    width: 110px;
+    height: 38px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.delete-all-tasks-modal-cancel-btn{
+    background-color: var(--background-color);
+    color: #6C63FF;
+    border: 1px solid #6C63FF;
+    width: 110px;
+    height: 38px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    cursor: pointer;
 }
