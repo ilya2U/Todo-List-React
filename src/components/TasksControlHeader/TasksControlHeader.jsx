@@ -4,10 +4,16 @@ import DeleteAllTasksButton from '../DeleteAllTasksButton/DeleteAllTasksButton';
 import SelectTypeTasks from '../SelectTypeTasks/SelectTypeTasks';
 import TasksCounter from '../TasksCounter/TasksCounter';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
+import { LOCAL_STORAGE_TASKS_COUNTER_KEY } from '../../helpers/localStorage';
 
-const TasksControlHeader = ({deleteAllTasks, tasksCounter, tasksSearch, handleSearchTasksChange, tasksFilter, handleTasksFilterChange}) => {
+const TasksControlHeader = ({deleteAllTasks, tasks, tasksSearch, handleSearchTasksChange, tasksFilter, handleTasksFilterChange}) => {
   const [animationSearchInput, setAnimationSearchInput] = useState('');
-  
+  const [tasksCounter,setTasksCounter] = useState( +(JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_COUNTER_KEY))) || 0 );
+
+  useEffect(() => {
+    setTasksCounter(tasks.length);
+  }, [tasks]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimationSearchInput('');

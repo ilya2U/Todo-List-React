@@ -13,7 +13,6 @@ const AddTaskContent = ({ addNewTask, setActive }) => {
       setActive(false);
       setError(''); 
     } else {
-      setTodoInputValue('');
       setError('Input must must contain more than three characters.'); 
     }
   };
@@ -39,14 +38,15 @@ const AddTaskContent = ({ addNewTask, setActive }) => {
       <div className="add-task-content-note-title">NEW NOTE</div>
       <input 
         type="text" 
-        className='add-task-content-add-input'
-        placeholder= {error || 'Input your note...'}
+        className={`add-task-content-add-input ${error ? 'input-error' : ''}`}
+        placeholder= 'Input your note...'
         value={todoInputValue}
         onChange={e => setTodoInputValue(e.target.value)}
         onKeyDown={handleKeyDownInputTask}
         autoFocus
         required
       />
+      {error && <span className="add-task-content-add-input-error-message">{error}</span>}
       <div className="add-task-content-button-container">
         <button className="add-task-content-close-btn" onClick={handleCancelTaskCreating}>
           CANCEL

@@ -12,11 +12,9 @@ import { LOCAL_STORAGE_TASKS_COUNTER_KEY, LOCAL_STORAGE_TASKS_KEY } from "./help
 
 function App() {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_KEY)) || [])
-  const [tasksCounter,setTasksCounter] = useState( +(JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_COUNTER_KEY))) || 0 );
   const [tasksSearch, setTasksSearch] = useState("");
   const [tasksFilter, setTasksFilter] = useState('all');
   const [addTodoModalIsOpen, setAddTodoModalIsOpen] = useState(false);
-
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_TASKS_KEY)) || [];
@@ -25,7 +23,7 @@ function App() {
 
   useEffect(() => {
     updateCurrentTasksList(tasks)
-    setTasksCounter(tasks.length)
+    localStorage.setItem(LOCAL_STORAGE_TASKS_COUNTER_KEY ,JSON.stringify(tasks.length));
   }, [tasks]);
 
   const addNewTask = (value) => {
@@ -88,7 +86,7 @@ function App() {
               <div style={{marginTop: 10}}>
                 <TasksControlHeader 
                   deleteAllTasks={deleteAllTasks} 
-                  tasksCounter = {tasksCounter}
+                  tasks={tasks}
                   tasksSearch={tasksSearch} 
                   handleSearchTasksChange={handleSearchTasksChange}
                   tasksFilter={tasksFilter}

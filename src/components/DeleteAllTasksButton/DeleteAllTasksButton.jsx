@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DeleteAllTasksButton.css';
-import delteALlTasksIcon from '../../icons/delete-task-icon.svg'
+import {ReactComponent as DelteAllTasksIcon} from '../../icons/delete-task-icon.svg'
 import Modal from '../../UI/Modal/Modal';
 
 const DeleteAllTasksButton = ({ deleteAllTasks, setAnimationSearchInput, tasksCounter }) => {
@@ -22,8 +22,7 @@ const DeleteAllTasksButton = ({ deleteAllTasks, setAnimationSearchInput, tasksCo
   }
 
   return (
-    <>  <img
-        src={delteALlTasksIcon}
+    <>  <DelteAllTasksIcon
         alt="Delete All Tasks Button"
         className="delete-all-tasks-btn-icon"
         onClick={() => handleDeleteAllTask()}

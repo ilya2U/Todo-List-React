@@ -27,6 +27,16 @@
   padding: 8px 16px 8px 16px;
 }
 
+.add-task-content-add-input.input-error {
+  border-color: red;
+}
+
+.add-task-content-add-input-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
 .add-task-content-button-container{
   width: 100%;
   margin-top: 128px;
