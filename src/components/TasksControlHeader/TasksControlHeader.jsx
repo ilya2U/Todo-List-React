@@ -6,7 +6,6 @@ import TasksCounter from '../TasksCounter/TasksCounter';
 import ThemeSwitch from '../ThemeSwitch/ThemeSwitch';
 
 const TasksControlHeader = ({deleteAllTasks, tasksCounter, tasksSearch, handleSearchTasksChange, tasksFilter, handleTasksFilterChange}) => {
-  
   const [animationSearchInput, setAnimationSearchInput] = useState('');
   
   useEffect(() => {
@@ -25,7 +24,7 @@ const TasksControlHeader = ({deleteAllTasks, tasksCounter, tasksSearch, handleSe
           <div className="input-container">
             <input
               type="text"
-              placeholder="Search todos..."
+              placeholder="Search note..."
               value={tasksSearch}
               onChange={handleSearchTasksChange}
               className={`input-field ${animationSearchInput}`}

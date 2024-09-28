@@ -22,6 +22,7 @@
 
 .tasks-statisticts-span {
     background-color: var(--background-color);
+    font-family: Inter;
     font-size: 16px;
     font-weight: 300;
     line-height: 20px;

@@ -16,7 +16,7 @@ const TasksCounter = ({ tasksCounter }) => {
 
   return (
     <>
-      {tasksCounter > 0 ? (
+      {!!tasksCounter ? (
              <div className={classNames('tasks-counter', animationTaskCounterClass)}>
           {tasksCounter}
         </div>

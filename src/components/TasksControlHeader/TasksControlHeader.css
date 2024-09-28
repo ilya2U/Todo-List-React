@@ -24,6 +24,11 @@
   background-size: 16px 16px; 
   background-position: calc(100% - 12px) center; 
   color: var(--color);
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
 }
 
 .input-field.animate {

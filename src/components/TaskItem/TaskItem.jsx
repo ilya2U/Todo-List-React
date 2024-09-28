@@ -46,9 +46,8 @@ const TaskItem = ({ task, toggleIsEditTask, deleteTask, editTask, index }) => {
     }
   };
 
-  const handleStartTaskEdititing = (e) => {
+  const handleStartTaskEdititing = () => {
     if (!isEditing) handleTaskEditClick();
-    e.stopPropagation();
   }
 
   return (
