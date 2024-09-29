@@ -47,8 +47,8 @@ const AddTaskContent = ({ addNewTask, setActive }) => {
         required
         width = '440px'
         height = '38px'
+        error={error}
       />
-      {error && <span className="add-task-content-add-input-error-message">{error}</span>}
       <div className="add-task-content-button-container">
         <button className="add-task-content-close-btn" onClick={handleCancelTaskCreating}>
           CANCEL
