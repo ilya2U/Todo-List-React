@@ -1,0 +1,28 @@
+.ui-custom-select {
+    color: #fff;
+    background-color: #6C63FF;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    width: auto; 
+    min-width: 120px;
+    max-width: 100%; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+     
+    &:hover {
+        background-color: #5a54d2; 
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.5); 
+    }
+}

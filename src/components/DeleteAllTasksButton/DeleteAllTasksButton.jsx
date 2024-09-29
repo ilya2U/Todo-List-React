@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './DeleteAllTasksButton.css';
 import {ReactComponent as DelteAllTasksIcon} from '../../icons/delete-task-icon.svg'
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../uikit/Modal/Modal';
 
 const DeleteAllTasksButton = ({ deleteAllTasks, setAnimationSearchInput, tasksCounter }) => {
 
@@ -14,7 +14,7 @@ const DeleteAllTasksButton = ({ deleteAllTasks, setAnimationSearchInput, tasksCo
   }
 
   const handleDeleteAllTask = () => {
-    if(tasksCounter===0){
+    if(!tasksCounter){
       searchAnimation();
     } else {
       setDeleteAllTasksModal(true);

@@ -4,7 +4,7 @@ import TaskItem from "./components/TaskItem/TaskItem";
 import Empty from "./components/EmptyTasksStub/EmptyTasksStub";
 import './App.css'
 import {updateCurrentTasksList} from "./components/func";
-import Modal from "./UI/Modal/Modal";
+import Modal from "./uikit/Modal/Modal";
 import AddTask from "./components/AddTaskContent/AddTaskContent";
 import AddTaskBtn from "./components/AddTaskBtn/AddTaskBtn";
 import TasksStatisticts from "./components/TasksStatistics/TasksStatisticts";

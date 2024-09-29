@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import './AddTaskContent.css';
+import Input from '../../uikit/Input/Input';
 
 const AddTaskContent = ({ addNewTask, setActive }) => {
   
@@ -36,15 +37,16 @@ const AddTaskContent = ({ addNewTask, setActive }) => {
   return (
     <div className='add-task-content'>
       <div className="add-task-content-note-title">NEW NOTE</div>
-      <input 
+      <Input
         type="text" 
-        className={`add-task-content-add-input ${error ? 'input-error' : ''}`}
         placeholder= 'Input your note...'
         value={todoInputValue}
         onChange={e => setTodoInputValue(e.target.value)}
         onKeyDown={handleKeyDownInputTask}
         autoFocus
         required
+        width = '440px'
+        height = '38px'
       />
       {error && <span className="add-task-content-add-input-error-message">{error}</span>}
       <div className="add-task-content-button-container">
