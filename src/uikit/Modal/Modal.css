@@ -1,5 +1,5 @@
 .modal {
-    z-index: 1000; 
+    z-index: 100; 
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.4);
@@ -11,7 +11,7 @@
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s; 
+    transition: opacity 0.2s;
 }
 
 .modal.active {
@@ -22,8 +22,8 @@
 .modal-content {
     border-radius: 16px;
     background-color: #fff; 
-    transform: scale(0.8);
-    transition: transform 0.5s, opacity 0.5s;
+    transform: scale(0.4);
+    transition: transform 0.15s, opacity 0.15s;
     opacity: 0;
 }
 

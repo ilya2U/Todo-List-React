@@ -1,17 +1,21 @@
 import React from 'react';
 import './SelectTypeTasks.css';
+import Select from '../../uikit/Select/Select';
 
 const SelectTypeTasks = ({ taskFilter, handleTasksFilterChange }) => {
+  const options = [
+    { value: 'all', label: 'All' },
+    { value: 'completed', label: 'COMPLETE' },
+    { value: 'pending', label: 'INCOMPLETE' }
+  ];
   return (
-      <select
-        className='filter-tasks-select'
-        value={taskFilter}
-        onChange={(e) => handleTasksFilterChange(e.target.value)}
-      >
-        <option value="all">ALL</option>
-        <option value="completed">DONE</option>
-        <option value="active">ACTIVE</option>
-      </select>
+      <Select 
+      options={options}
+      value={taskFilter}
+      onChange={(e) => handleTasksFilterChange(e.target.value)}
+      width="85px"
+      height="38px"
+    />
   );
 };
 

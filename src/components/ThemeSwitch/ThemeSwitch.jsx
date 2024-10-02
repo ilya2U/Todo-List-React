@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './ThemeSwitch.css';
+import { ReactComponent as LightThemeIcon} from '../../icons/light-theme-icon.svg'
+import { ReactComponent as DarkThemeIcon} from '../../icons/dark-theme-icon.svg'
+import { useTheme } from '../../hooks/ThemeProvider';
 
 const ThemeSwitch = () => {
-  const [dark, setDark] = useState(JSON.parse(localStorage.getItem('DarkTheme')) || false)
-
-  useEffect(() => {
-    if (dark) {
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('DarkTheme', JSON.stringify(true));
-    } else {
-      document.body.classList.remove('dark-theme');
-      localStorage.setItem('DarkTheme', JSON.stringify(false));
-    }
-  }, [dark]);
+  const {theme, toggleTheme} = useTheme();
 
   return (
-    <div className='theme-switch'>
-      <img
-        src={dark ? "/icons/light-theme-icon.svg" : "/icons/dark-theme-icon.svg"}
-        alt="Theme Switcher"
-        onClick={() => setDark(!dark)}
-        className='theme-switch-icon'
-      />
+    <div className='theme-switch' onClick={toggleTheme}>
+      {theme === 'light' ? <DarkThemeIcon className='theme-switch-icon'/> : <LightThemeIcon className='theme-switch-icon'/>}
     </div>
   );
 };

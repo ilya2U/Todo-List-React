@@ -6,7 +6,7 @@
   font-family: Kanit;
 }
 
-:root {
+.light-theme {
   --background-color: white;
   --text-color: black;
   --border: #6C63FF;
@@ -22,5 +22,6 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   border: var(--border);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  --white-svg-color: brightness(0) saturate(100%) invert(99%) sepia(2%) saturate(319%) hue-rotate(23deg) brightness(116%) contrast(100%);
+  --red-svg-color: hue-rotate(0deg) brightness(0) saturate(100%) invert(44%) sepia(67%) saturate(5816%) hue-rotate(340deg) brightness(96%) contrast(99%);
 }

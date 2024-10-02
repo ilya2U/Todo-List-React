@@ -10,11 +10,11 @@
     position: fixed;
     bottom: 32px; 
     right: 333px; 
-    z-index: 100;
+    z-index: 10;
 }
 
 .add-task-modal-icon{
-    filter: brightness(0) saturate(100%) invert(99%) sepia(2%) saturate(319%) hue-rotate(23deg) brightness(116%) contrast(100%);
+    filter: var(--white-svg-color);
     width: 24px;
     height: 24px;
 }
